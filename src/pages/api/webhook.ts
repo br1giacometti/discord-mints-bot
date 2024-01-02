@@ -55,7 +55,7 @@ export default async function handler(req: any, res: any) {
                   value: " ",
                 },
                 {
-                  name: ":moneybag:  Sale Price",
+                  name: ":moneybag:  Mint Price",
                   value:
                     "**" +
                     (webhook_data[0].events.nft.amount / 1000000000).toFixed(
@@ -66,7 +66,7 @@ export default async function handler(req: any, res: any) {
                   inline: true,
                 },
                 {
-                  name: ":date:  Sale Date",
+                  name: ":date:  Mint Date",
                   value: `<t:${webhook_data[0].timestamp}:R>`,
                   inline: true,
                 },
@@ -82,14 +82,14 @@ export default async function handler(req: any, res: any) {
                     webhook_data[0].events.nft.buyer.slice(-4),
                   inline: true,
                 },
-                {
+                /* {
                   name: "Seller",
                   value:
                     webhook_data[0].events.nft.seller.slice(0, 4) +
                     ".." +
                     webhook_data[0].events.nft.seller.slice(-4),
                   inline: true,
-                },
+                },*/
               ],
               image: {
                 url: token.content.files[0].uri,
