@@ -96,9 +96,9 @@ export default async function handler(req: any, res: any) {
               },
               timestamp: new Date().toISOString(),
               footer: {
-                text: "Helius",
-                icon_url:
-                  "https://assets-global.website-files.com/641a8c4cac3aee8bd266fd58/642b5b2804ea37191a59737b_favicon-32x32.png",
+                text: "giac0Dev",
+                /*icon_url:
+                  "https://assets-global.website-files.com/641a8c4cac3aee8bd266fd58/642b5b2804ea37191a59737b_favicon-32x32.png",*/
               },
             },
           ],
