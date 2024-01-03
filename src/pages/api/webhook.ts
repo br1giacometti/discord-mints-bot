@@ -19,8 +19,6 @@ const getAsset = async (token: string) => {
   return result;
 };
 
-//test giac0dev
-
 export default async function handler(req: any, res: any) {
   try {
     if (req.method === "POST") {
@@ -32,6 +30,15 @@ export default async function handler(req: any, res: any) {
       console.log(webhook_data[0].events.nft);
       console.log(webhook_data[0].events.nft.nfts[0]);
       let token: any = await getAsset(webhook_data[0].events.nft.nfts[0].mint);
+
+      // Campo condicional "Mint Link"
+      let mintLinkField = null;
+      if (webhook_data[0].events.nft.source === "LAUNCH_MY_NFT") {
+        mintLinkField = {
+          name: "Mint Link",
+          value: "[Mint Link](https://launchmynft.io/collections/ACA)",
+        };
+      }
 
       const response = await fetch(webhook, {
         method: "POST",
@@ -76,7 +83,7 @@ export default async function handler(req: any, res: any) {
                 },
                 {
                   name: "Source",
-                  value: webhook_data[0].events.nft.source, // Agregar el valor de source aquí
+                  value: webhook_data[0].events.nft.source,
                 },
                 {
                   name: "Buyer",
@@ -86,14 +93,8 @@ export default async function handler(req: any, res: any) {
                     webhook_data[0].events.nft.buyer.slice(-4),
                   inline: true,
                 },
-                /* {
-                  name: "Seller",
-                  value:
-                    webhook_data[0].events.nft.seller.slice(0, 4) +
-                    ".." +
-                    webhook_data[0].events.nft.seller.slice(-4),
-                  inline: true,
-                },*/
+                // ... Otros campos existentes ...
+                mintLinkField, // Agregar el campo condicional
               ],
               image: {
                 url: token.content.files[0].uri,
@@ -101,8 +102,6 @@ export default async function handler(req: any, res: any) {
               timestamp: new Date().toISOString(),
               footer: {
                 text: "giac0Dev",
-                /*icon_url:
-                  "https://assets-global.website-files.com/641a8c4cac3aee8bd266fd58/642b5b2804ea37191a59737b_favicon-32x32.png",*/
               },
             },
           ],
