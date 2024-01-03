@@ -75,7 +75,9 @@ export default async function handler(req: any, res: any) {
                 {
                   name: "Buyer",
                   value:
-                    webhook_data[0].events.nft?.buyer?.slice(0, 4) + ".." + webhook_data[0].events.nft.buyer.slice(-4),
+                    webhook_data[0].events.nft?.buyer?.slice(0, 4) +
+                    ".." +
+                    webhook_data[0].events?.nft?.buyer?.slice(-4),
                   inline: true,
                 },
                 /* {
