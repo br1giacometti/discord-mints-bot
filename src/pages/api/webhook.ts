@@ -33,6 +33,14 @@ export default async function handler(req: any, res: any) {
       console.log(webhook_data[0].events.nft.nfts[0]);
       let token: any = await getAsset(webhook_data[0].events.nft.nfts[0].mint);
 
+      const externalUrl = token.content.metadata.links.external_url;
+      const authoritiesAddress = token.authorities[0].address; // Supongo que solo hay un elemento en el array authorities
+
+      // Ahora puedes usar estas variables en tu código
+      // Por ejemplo, para imprimir en la consola:
+      console.log("External URL:", externalUrl);
+      console.log("Authorities Address:", authoritiesAddress);
+
       const response = await fetch(webhook, {
         method: "POST",
         headers: {
