@@ -43,7 +43,7 @@ export default async function handler(req: any, res: any) {
           embeds: [
             {
               title: token.content.metadata.name + " has mint!",
-              url: `{token.content.metadata.links.external_url}`,
+              url: token.content.metadata.links.external_url,
               color: 16486972,
               fields: [
                 {
