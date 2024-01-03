@@ -33,12 +33,15 @@ export default async function handler(req: any, res: any) {
       console.log(webhook_data[0].events.nft.nfts[0]);*/
       let token: any = await getAsset(webhook_data[0].events.nft.nfts[0].mint);
 
-      const groupValue = token.content.metadata.grouping[0]?.group_value;
+      // Verificar si metadata y grouping existen antes de acceder a sus propiedades
+      const metadata = token.content.metadata;
+      const groupValue = metadata && metadata.grouping && metadata.grouping[0]?.group_value;
+
+      // Verificar si metadata y links existen antes de acceder a sus propiedades
+      const link = metadata && metadata.links && metadata.links[0]?.external_url;
+
       console.log("Group Value:", groupValue);
-
-      const link = token.content.metadata.links[0]?.external_url;
-      console.log("Group Value:", link);
-
+      console.log("External URL:", link);
       const response = await fetch(webhook, {
         method: "POST",
         headers: {
