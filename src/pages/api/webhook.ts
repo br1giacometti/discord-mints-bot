@@ -36,7 +36,7 @@ export default async function handler(req: any, res: any) {
       if (webhook_data[0].events.nft.source === "LAUNCH_MY_NFT") {
         mintLinkField = {
           name: "Mint Link",
-          value: "[Mint Link](https://launchmynft.io/collections/ACA)",
+          value: `[Mint Link](https://launchmynft.io/collections/${webhook_data[0].events.nft.signature})`,
         };
       }
 
