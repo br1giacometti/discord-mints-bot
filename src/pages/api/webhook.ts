@@ -28,12 +28,10 @@ export default async function handler(req: any, res: any) {
 
       let webhook_data = req.body;
 
-      /*console.log(webhook_data, "e1");
+      console.log(webhook_data, "e1");
       console.log(webhook_data[0].events.nft);
-      console.log(webhook_data[0].events.nft.nfts[0]);*/
+      console.log(webhook_data[0].events.nft.nfts[0]);
       let token: any = await getAsset(webhook_data[0].events.nft.nfts[0].mint);
-
-      console.log(token.content.metadata.symbol);
 
       const response = await fetch(webhook, {
         method: "POST",
@@ -58,13 +56,7 @@ export default async function handler(req: any, res: any) {
                 },
                 {
                   name: ":moneybag:  Mint Price",
-                  value:
-                    "**" +
-                    (webhook_data[0].events.nft.amount / 1000000000).toFixed(
-                      2
-                    ) +
-                    " " +
-                    "SOL**",
+                  value: "**" + (webhook_data[0].events.nft.amount / 1000000000).toFixed(2) + " " + "SOL**",
                   inline: true,
                 },
                 {
@@ -83,9 +75,7 @@ export default async function handler(req: any, res: any) {
                 {
                   name: "Buyer",
                   value:
-                    webhook_data[0].events.nft.buyer.slice(0, 4) +
-                    ".." +
-                    webhook_data[0].events.nft.buyer.slice(-4),
+                    webhook_data[0].events.nft.buyer.slice(0, 4) + ".." + webhook_data[0].events.nft.buyer.slice(-4),
                   inline: true,
                 },
                 /* {
