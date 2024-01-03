@@ -28,10 +28,16 @@ export default async function handler(req: any, res: any) {
 
       let webhook_data = req.body;
 
-      console.log(webhook_data, "e1");
+      /*console.log(webhook_data, "e1");
       console.log(webhook_data[0].events.nft);
-      console.log(webhook_data[0].events.nft.nfts[0]);
+      console.log(webhook_data[0].events.nft.nfts[0]);*/
       let token: any = await getAsset(webhook_data[0].events.nft.nfts[0].mint);
+
+      const groupValue = token.content.metadata.grouping[0]?.group_value;
+      console.log("Group Value:", groupValue);
+
+      const link = token.content.metadata.links[0]?.external_url;
+      console.log("Group Value:", link);
 
       const response = await fetch(webhook, {
         method: "POST",
