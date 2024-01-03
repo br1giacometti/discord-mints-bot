@@ -79,10 +79,6 @@ export default async function handler(req: any, res: any) {
                   value: webhook_data[0].events.nft.source, // Agregar el valor de source aquí
                 },
                 {
-                  name: "Description",
-                  value: webhook_data[0].events.nft.description, // Agregar el valor de description aquí
-                },
-                {
                   name: "Buyer",
                   value:
                     webhook_data[0].events.nft.buyer.slice(0, 4) +
