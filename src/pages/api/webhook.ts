@@ -42,7 +42,7 @@ export default async function handler(req: any, res: any) {
           content: null,
           embeds: [
             {
-              title: token.content.metadata.name + " has mint!",
+              title: token?.content?.metadata?.name + " has mint!",
               url: `https://solscan.io/token/${webhook_data[0].events?.nft?.nfts[0].mint}`,
               color: 16486972,
               fields: [
